@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+</head>
+<body>
+	
+
+	<script>
+	var app=angular.module('app',[]);
+	app.controller('first',['$scope','filter',function($scope,$filter){
+		var upp=$filter('initcase');
+		$scope.msg=upp('abc');
+	}]);
+
+	app.config(['$filterProvider',function($filterProvide){
+		$filterProvide.register('initcase',function(){
+			return function(msg){
+				return msg[0].toUpperCase()+msg.substr(1);
+			}
+		})
+	}])
+
+	</script>
+</body>
+</html>

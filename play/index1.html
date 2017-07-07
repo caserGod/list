@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script src="angular-route.js"></script>
+</head>
+<body ng-app='app'>
+	<div>
+		<a href="#a1/1">1</a>
+		<a href="#a1/2">2</a>
+		<a href="#a1/3">3</a>
+		<a href="#a1/4">4</a>
+	</div>
+	<div ng-view></div>
+
+	<script>
+	var app=angular.module('app',['ngRoute']);
+	app.controller('first',['$scope','$routeParams','$http',function($scope,$routeParams,$http){
+		var pid=$routeParams.pid;
+		$http({
+			url:'list1.php',
+			params:{num:pid},
+			method:'get'
+		}).success(function(data){
+			$scope.arr=data;
+		})
+	}]).config(['$routeProvider',function($routeProvider){
+		$routeProvider.when('/',{
+			template:'<h1>wkx</h1>'
+		}).when('/a1/:pid',{
+			templateUrl:'a2.html',
+			controller:'first'
+		})
+	}])
+	</script>
+</body>
+</html>

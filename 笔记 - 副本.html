@@ -1,0 +1,99 @@
+1.pwd:print working directory查询当前路径
+2.cd:changge directory切换工作路径
+3.ls：list显示文件夹，ls -l详细信息 ls-lt以时间顺序
+4.mkdir:make directory新建文件夹，
+5.touch:创建具体文件
+6.rmdir:remove directory
+7.rm:remove删除文件，
+8.cp：复制文件  cp 1.txt 2.txt复制并改名， cp 1.txt aa/2.txt
+9.cat:查看文件内容，
+10vi：vi向文件夹中传入数据，
+		vi加文件名 首先进入的是命名模式，可以通过指令切换到输入模式或者底行模式，
+		i/a切换到输入模式，输入结束后按esc退出输入模式，进入命令模式，
+		写入数据后:wq保存退出，
+		w write写入
+		q quit退出
+		q！不保存强制退出
+11.diff比较两个文件之间的区别
+
+git命令都是以git开头的
+1.配置参数
+	git config --global user.name '真实用户名'
+	git config --global user.email '你的邮箱'
+2.初始化仓库，
+	git init
+	自动生成一个.get隐藏文件夹
+3.查看仓库状态
+	git status
+4.提交
+	git add文件名，将文件提交到暂存区
+	git add -A将所有修改文件提交到暂存区，
+	git commit -m '提交信息说明'	提交到仓库
+5.git diff
+6.取消修改
+	1.没有提交到暂存区时，撤销工作区的修改时，git checkout --加文件名
+	取消还未add、commit的修改
+
+	2.提交到暂存区，但还没有commit
+	现回退add，将暂存区的修改取消，然后再取消工作区的修改，
+	git reset HEAD 文件名    将add取消
+
+	3.已经add并且已经commit
+	git reset --hard 加提交的id
+
+7.  查看存盘点
+	git log
+	git log --pretty=oneline取前六位
+	git reflog  查看所有提交和回退
+8.  git status会忽略空文件夹，
+9.  HEADgit中把每一次提交串成一条线，为主分支master，
+10. 查看当前文
+	git branch前面有*表示当前所在分支
+11. 创建分支
+	git branch 加分支名
+12. git checkout 加分支名  切换分支
+13. git merge 加分支名称      合并指令，在master分支中使用git merge v1.1
+	会将v1.1修改的合并到master中，v1.1中不变
+
+	在v1中修改2.txt内容并提交，
+	切换到master分支，查看2.txt是否被修改，
+	修改master分支中的2.txt并提交
+	切回v1分支中查看2.txt是否被修改，
+14. 删除分支
+	git branch -d 分支名称
+	不能在当前分支删除自己
+	git branch -D 分支名称  强制删除
+
+
+15. 创建新仓库，repository name中填写仓库名字，
+	create
+	1.关联本地仓库与远程仓库，
+	git remote add origin https://github.com/caserGod/test.git
+	将本地仓库的内容推送、上传。提交到远程仓库，
+	git push -u origin master  
+	origin是别名，指代后面的地址
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

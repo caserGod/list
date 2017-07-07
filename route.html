@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script src="angular-route.js"></script>
+	<style>
+		li{list-style:none;}
+	</style>
+</head>
+<body ng-app='app'>
+	<ul>
+		<li><a href="#first">第一个</a></li>
+		<li><a href="#second">第二个</a></li>
+		<li><a href="#third">第三个</a></li>
+	</ul>
+	<div ng-view></div>
+
+	<script>
+	var app=angular.module('app',['ngRoute']);
+	app.controller('first',['$scope',function($scope){
+		$http({
+			url:'arr.php',
+			method:'get'
+		}).seccuss(function(data){
+			$scope.arr=data;
+		})
+	}])
+	app.config(['$routeProvider',function($routeProvider){
+		$routeProvider.when('/',{
+			template:'<div ng-repeat="i in arr">{{i}}</div>',
+			controller:first
+		}).when('/first',{
+			template:'<h1>ds</h1>'
+		}).when('/second',{
+			template:'<h2>dsa</h2>'
+		}).when('/third',{
+			templateUrl:'./routeModel.html'
+		}).otherwise({
+			//template:'<h4>d</h4>'
+			redirectTo:'/'
+		})
+	}])
+
+
+	</script>
+</body>
+</html>

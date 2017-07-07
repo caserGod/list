@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<script src="angular-route.js"></script>
+	<style>
+		li{list-style:none;}
+	</style>
+</head>
+<body ng-app='app'>
+	<div>
+		<a href="#1">111</a>
+		<a href="#2">222</a>
+		<a href="#3">333</a>
+		<a href="#4">444</a>
+	</div>
+	<div ng-view>
+		
+	</div>
+
+	<script>
+		var app=angular.module('app',['ngRoute']);
+		app.controller('first',['$scope','$http','$routeParams',function($scope,$http,$routeParams){
+			var pid=$routeParams.pid;
+			console.log(pid);
+			$http({
+				url:'list.php',
+				method:'get',
+				params:{number:pid}
+			}).success(function(data){
+				$scope.arr=data;
+				console.log($scope.arr)
+			});
+
+		}])
+		app.config(['$routeProvider',function($routeProvider){
+			$routeProvider.when('/',{
+				template:'<h1>wkx</h1>'
+			}).when('/:pid',{
+				templateUrl:'./a1.html',
+				controller:'first'
+			})
+		}])
+	</script>
+</body>
+</html>

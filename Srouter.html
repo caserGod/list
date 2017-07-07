@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul>
+		<li><a href="#first">第一个</a></li>
+		<li><a href="#second">第二个</a></li>
+		<li><a href="#third">第三个</a></li>
+	</ul>
+	<div id="d"></div>
+	<script>
+	window.addEventListener('hashchange',function(){
+		console.log(location.hash);
+		var hash=location.hash;
+		var div=document.querySelector('#d')
+	/*	div.innerHTML=hash;
+		switch(hash){
+			case '#first':div.innerHTML='first';break;
+			case '#second':div.innerHTML='second';break;
+		}*/
+		//hash=hash.substr(1)
+		var xhr=new XMLHttpRequest();
+		xhr.open('get','./Srouter.php?hash='+hash);
+		console.log('./Sroute.php?hash='+hash)
+		xhr.send();
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState==4&&xhr.status==200){
+				var data=xhr.responseText;
+				console.log(data)
+			}
+		}
+	})
+	</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="angular.min.js"></script>
+	<style>
+		table{
+			border:1px solid red;
+			width:300px;
+			text-align:center;
+		}
+		td{border:1px solid red;}
+	</style>
+</head>
+<body ng-app='app'>
+	<div ng-controller='first'>
+		<input type="button" value="show" ng-click='show()'>
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td>id</td>
+				<td>name</td>
+				<td>danger</td>
+			</tr>
+			<tr ng-repeat='n in res'>
+				<td>{{n.id}}</td>
+				<td>{{n.name}}</td>
+				<td>{{n.danger}}</td>
+			</tr>
+		</table>
+	</div>
+
+
+	<script>
+	var app=angular.module('app',[]);
+	app.controller('first',['$scope','$http',function($scope,$http){
+		$scope.show=function(){
+			$http({
+				url:'./data.php',
+				method:'get'
+			}).success(function(result){
+				$scope.res=result;
+				// 			app.directive("selfOrder",function(){
+				// 	return{
+				// 		restrict:"CAEM",
+				// 		replace:true,
+				// 		template:'<tr ng-repeat="key in result"><td>{{key.id}}</td><td>{{key.name}}</td><td>{{key.gender}}</td></tr>'
+				// 	}
+				// })
+			})
+		}
+	}])
+	</script>
+</body>
+</html>
